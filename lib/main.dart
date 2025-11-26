@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kasir AI',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+      initialRoute: '/login',
       routes: {
-        '/': (context) => const LoginScreen(),
+        '/login': (context) => const LoginScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/products': (context) => const ProductListScreen(),
         '/product_form': (context) => const ProductFormScreen(),
         '/transaction': (context) => const TransactionScreen(),
-        '/history': (context) => const TransactionHistoryScreen(),
+        '/transactions/history': (context) => const TransactionHistoryScreen(),
       },
     );
   }
