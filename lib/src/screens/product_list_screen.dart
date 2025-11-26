@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../data/dummy_data.dart';
+import '../widgets/product_item_tile.dart';
 
 class ProductListScreen extends StatelessWidget {
   const ProductListScreen({super.key});
@@ -12,11 +13,7 @@ class ProductListScreen extends StatelessWidget {
         itemCount: dummyProducts.length,
         itemBuilder: (context, index) {
           final product = dummyProducts[index];
-          return ListTile(
-            title: Text(product.name),
-            subtitle: Text('${product.category} - Stok: ${product.stock}'),
-            trailing: Text('Rp ${product.price.toStringAsFixed(0)}'),
-          );
+          return ProductItemTile(product: product);
         },
       ),
       floatingActionButton: FloatingActionButton(

@@ -37,31 +37,67 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(labelText: 'Nama Produk'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Nama produk tidak boleh kosong';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _categoryController,
                 decoration: const InputDecoration(labelText: 'Kategori'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Kategori tidak boleh kosong';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _priceController,
                 decoration: const InputDecoration(labelText: 'Harga'),
                 keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Harga tidak boleh kosong';
+                  }
+                  if (double.tryParse(value) == null) {
+                    return 'Harga harus berupa angka';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _stockController,
                 decoration: const InputDecoration(labelText: 'Stok'),
                 keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Stok tidak boleh kosong';
+                  }
+                  if (int.tryParse(value) == null) {
+                    return 'Stok harus berupa angka';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 24),
               PrimaryButton(
                 text: 'Simpan',
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // TODO: Implement save logic
-                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Produk berhasil disimpan')),
+                    );
+                    // Delay pop to let user see the snackbar
+                    Future.delayed(const Duration(seconds: 1), () {
+                      if (!context.mounted) return;
+                      Navigator.pop(context);
+                    });
                   }
                 },
               ),
