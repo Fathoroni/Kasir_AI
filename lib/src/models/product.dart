@@ -4,6 +4,8 @@ class Product {
   final double price;
   final String? imageUrl;
   final String? description;
+  final String category;
+  final int stock;
 
   const Product({
     required this.id,
@@ -11,5 +13,7 @@ class Product {
     required this.price,
     this.imageUrl,
     this.description,
+    required this.category,
+    required this.stock,
   });
 }
