@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/primary_button.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -15,21 +14,24 @@ class DashboardScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              PrimaryButton(
+              _DashboardButton(
+                icon: Icons.shopping_cart,
                 text: 'Transaksi Baru',
                 onPressed: () {
                   Navigator.pushNamed(context, '/transaction');
                 },
               ),
               const SizedBox(height: 16),
-              PrimaryButton(
+              _DashboardButton(
+                icon: Icons.list,
                 text: 'Daftar Produk',
                 onPressed: () {
                   Navigator.pushNamed(context, '/products');
                 },
               ),
               const SizedBox(height: 16),
-              PrimaryButton(
+              _DashboardButton(
+                icon: Icons.history,
                 text: 'Riwayat Transaksi',
                 onPressed: () {
                   Navigator.pushNamed(context, '/transactions/history');
@@ -37,6 +39,45 @@ class DashboardScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DashboardButton extends StatelessWidget {
+  final IconData icon;
+  final String text;
+  final VoidCallback onPressed;
+
+  const _DashboardButton({
+    required this.icon,
+    required this.text,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          elevation: 4,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 28),
+            const SizedBox(width: 12),
+            Text(
+              text,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
     );

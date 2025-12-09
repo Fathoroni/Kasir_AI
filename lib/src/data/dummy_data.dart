@@ -41,4 +41,12 @@ final List<Product> dummyProducts = [
     stock: 500,
     description: 'Kerupuk putih renyah',
   ),
+  const Product(
+    id: '6',
+    name: 'Kopi susu',
+    price: 2000,
+    category: 'Minuman',
+    stock: 500,
+    description: 'Kopi susu segar',
+  ),
 ];
